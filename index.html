@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- daisy ui and tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>ph-tube</title>
+
+
+    <style>
+        .active {
+            background-color: #FF1F3D;
+            color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="flex justify-between w-11/12 mx-auto py-5 border-b-1">
+            <div class="logo">
+                <a href="#" class="cursor-pointer"><img class="w-100%" src="./assets/Logo.png" alt=""></a>
+            </div>
+            <div class="sort hidden md:block">
+                <button class="btn">sort by view</button>
+            </div>
+            <div class="blogs">
+                <button class="blogs bg-[#FF1F3D] px-3 py-2 rounded-sm text-white cursor-pointer">Blogs</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- category button section -->
+    <section class="categoryBtn w-11/12 flex justify-center py-5 gap-[1.5rem] mx-auto">
+
+        <div class="">
+            <button id="all-btn" onclick="loadVideo()" class="btn btn-sm">All</button>
+        </div>
+
+    </section>
+
+
+    <!-- video container section -->
+    <section id="videoContainer" class="grid grid-cols-1 w-11/12 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-5 my-4">
+
+
+        <div class="col-span-full flex flex-col items-center PY-20">
+            <img class="w-[150px]" src="./assets/Icon.png" alt="">
+            <h1 class="text-2xl font-bold">Oops!! Sorry, There is no content here</h1>
+        </div>
+    </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="video_details" class="modal">
+        <div class="modal-box">
+            <div id="video_container">
+
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
