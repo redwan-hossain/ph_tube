@@ -1,3 +1,14 @@
+
+const showLoader = () => {
+    document.getElementById("loader").classList.remove("hidden");
+    document.getElementById("videoContainer").classList.add("hidden");
+}
+
+const hideLoader = () => {
+    document.getElementById("loader").classList.add("hidden");
+    document.getElementById("videoContainer").classList.remove("hidden");
+}
+
 function removeActiveClass() {
     const activeButtons = document.getElementsByClassName("active");
     for (btn of activeButtons) {
@@ -14,8 +25,9 @@ function loadCategories() {
 };
 
 
-function loadVideo() {
-    fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+function loadVideo(searchValue = "") {
+    showLoader()
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchValue}`)
         .then(res => res.json())
         .then(data => {
             document.getElementById("all-btn").classList.add("active");
@@ -25,11 +37,12 @@ function loadVideo() {
 
 
 const loadCategoriesVideo = (id) => {
+    showLoader()
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
         .then(res => res.json())
         .then(data => {
 
-            let clickButton = document.querySelector(`#btn-${id}`)
+            let clickButton = document.getElementById(`btn-${id}`)
 
             removeActiveClass();
 
@@ -77,7 +90,7 @@ const displayVideo = (videos) => {
         </div>
         
           `
-
+        hideLoader()
         return;
     }
 
@@ -106,7 +119,18 @@ const displayVideo = (videos) => {
                 <div class="intro">
                     <h1 class="text-sm font-semibold">${video.title}</h1>
 
-                    <p class="text-gray-400 text-sm flex gap-1">${video.authors[0].profile_name} <img class="w-5 h-5 flex items-center" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="afd"></p>
+                    <p class="text-gray-400 text-sm flex gap-1">${video.authors[0].profile_name}
+                    
+
+                    ${video.authors[0].verified == true ? `<img class="w-5 h-5 flex items-center" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="afd">` : ` `
+
+            }
+
+                 
+                    
+                    </p>
+
+
                     <p class="text-gray-400 text-sm">${video.others.views}</p>
                 </div>
 
@@ -120,6 +144,8 @@ const displayVideo = (videos) => {
         videoContainer.appendChild(videoCard);
 
     })
+
+    hideLoader();
 }
 
 const showVideoDetails = (video) => {
@@ -135,6 +161,13 @@ const showVideoDetails = (video) => {
     
     `
 }
+
+
+document.querySelector("#search-input").addEventListener("keyup", function (e) {
+    const searchValue = e.target.value;
+
+    loadVideo(searchValue)
+})
 
 
 loadCategories();

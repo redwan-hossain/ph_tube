@@ -30,11 +30,22 @@
                 <a href="#" class="cursor-pointer"><img class="w-100%" src="./assets/Logo.png" alt=""></a>
             </div>
             <div class="sort hidden md:block">
-                <button class="btn">sort by view</button>
+                <label class="input">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input id="search-input" type="search" required placeholder="Search" />
+                </label>
             </div>
+
             <div class="blogs">
-                <button class="blogs bg-[#FF1F3D] px-3 py-2 rounded-sm text-white cursor-pointer">Blogs</button>
+                <button class="blogs bg-[#FF1F3D] px-3 py-2 rounded-sm text-white cursor-pointer">sort by view</button>
             </div>
+
         </nav>
     </header>
 
@@ -47,6 +58,10 @@
 
     </section>
 
+
+    <section class="text-center hidden" id="loader">
+        <span class="loading loading-spinner loading-xl"></span>
+    </section>
 
     <!-- video container section -->
     <section id="videoContainer" class="grid grid-cols-1 w-11/12 mx-auto md:grid-cols-3 lg:grid-cols-4 gap-5 my-4">
